@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pagina de prueba</title>
+  <title>Hello World</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-color: #d1f0ff;
+      background-color: #f4f4f4;
     }
     .container {
       text-align: center;
@@ -27,5 +27,27 @@
     <h1>Hello, World!</h1>
     <p>Este es un mensaje de prueba.</p>
   </div>
+
+  <script>
+    // Verificar si el navegador soporta la API de notificaciones
+    if ('Notification' in window) {
+      // Solicitar permiso para mostrar notificaciones
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          // Crear y mostrar la notificación
+          new Notification('Notificación de prueba', {
+            body: 'Este es un mensaje de prueba desde la página web.',
+            icon: 'https://via.placeholder.com/150' // Puedes poner aquí la URL de un ícono
+          });
+        } else {
+          console.log('Permiso para notificaciones no concedido.');
+        }
+      }).catch(error => {
+        console.error('Error al solicitar permiso de notificación:', error);
+      });
+    } else {
+      console.log('La API de notificaciones no es soportada en este navegador.');
+    }
+  </script>
 </body>
 </html>
