@@ -29,25 +29,29 @@
   </div>
 
   <script>
-    // Verificar si el navegador soporta la API de notificaciones
-    if ('Notification' in window) {
-      // Solicitar permiso para mostrar notificaciones
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-          // Crear y mostrar la notificación
-          new Notification('Notificación de prueba', {
-            body: 'Este es un mensaje de prueba desde la página web.',
-            icon: 'https://via.placeholder.com/150' // Puedes poner aquí la URL de un ícono
-          });
-        } else {
-          console.log('Permiso para notificaciones no concedido.');
-        }
-      }).catch(error => {
-        console.error('Error al solicitar permiso de notificación:', error);
-      });
-    } else {
-      console.log('La API de notificaciones no es soportada en este navegador.');
+    function showNotification() {
+      if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            new Notification('Notificación de prueba', {
+              body: 'Este es un mensaje de prueba desde la página web.',
+              icon: 'https://via.placeholder.com/150' // Puedes poner aquí la URL de un ícono
+            });
+          } else {
+            console.log('Permiso para notificaciones no concedido.');
+          }
+        }).catch(error => {
+          console.error('Error al solicitar permiso de notificación:', error);
+        });
+      } else {
+        console.log('La API de notificaciones no es soportada en este navegador.');
+      }
     }
+
+    // Llamar a la función para mostrar la notificación después de que la página se haya cargado
+    window.addEventListener('load', () => {
+      showNotification();
+    });
   </script>
 </body>
 </html>
