@@ -4,29 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello World</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f4f4f4;
-    }
-    .container {
-      text-align: center;
-    }
-    h1 {
-      color: #333;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Hello, World!</h1>
-    <p>Este es un mensaje de prueba.</p>
-  </div>
+  <h1>Hello, World!</h1>
+  <p>Este es un mensaje de prueba.</p>
 
   <script>
     function showNotification() {
@@ -34,8 +15,8 @@
         Notification.requestPermission().then(permission => {
           if (permission === 'granted') {
             new Notification('Notificación de prueba', {
-              body: 'Este es un mensaje de prueba desde la página web.',
-              icon: 'https://via.placeholder.com/150' // Puedes poner aquí la URL de un ícono
+              body: 'Este es un mensaje de prueba.',
+              icon: 'https://via.placeholder.com/150'
             });
           } else {
             console.log('Permiso para notificaciones no concedido.');
@@ -48,7 +29,6 @@
       }
     }
 
-    // Llamar a la función para mostrar la notificación después de que la página se haya cargado
     window.addEventListener('load', () => {
       showNotification();
     });
