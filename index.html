@@ -12,18 +12,25 @@
   <script>
     function showNotification() {
       if ('Notification' in window) {
-        Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-            new Notification('Notificación de prueba', {
-              body: 'Este es un mensaje de prueba.',
-              icon: 'https://via.placeholder.com/150'
-            });
-          } else {
-            console.log('Permiso para notificaciones no concedido.');
-          }
-        }).catch(error => {
-          console.error('Error al solicitar permiso de notificación:', error);
-        });
+        if (Notification.permission === 'granted') {
+          new Notification('Notificación de prueba', {
+            body: 'Este es un mensaje de prueba.',
+            icon: 'https://via.placeholder.com/150'
+          });
+        } else if (Notification.permission !== 'denied') {
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              new Notification('Notificación de prueba', {
+                body: 'Este es un mensaje de prueba.',
+                icon: 'https://via.placeholder.com/150'
+              });
+            } else {
+              console.log('Permiso para notificaciones no concedido.');
+            }
+          }).catch(error => {
+            console.error('Error al solicitar permiso de notificación:', error);
+          });
+        }
       } else {
         console.log('La API de notificaciones no es soportada en este navegador.');
       }
